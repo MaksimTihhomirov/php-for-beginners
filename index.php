@@ -1,9 +1,8 @@
+
 <?php
 
-$topics = [
-    'Testing',
-    'PHP',
-    'JavaScript'
-];
+$pageTitle = 'Home';
+$heading = 'Home Page';
+$message = 'Welcome to our website!';
 
 require 'index.view.php';

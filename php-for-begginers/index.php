@@ -3,6 +3,21 @@
 
 require 'functions.php';
 
+
+$dsn = "mysql:host=127.0.0.1;port=8889;dbname=myapp;charset=utf8mb4";
+
+$pdo = new PDO($dsn, 'root', 'root');
+
+$statement = $pdo->prepare("SELECT * FROM posts");
+$statement->execute();
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($posts as $post) {
+    echo "<li>" . $post['title'] . "</li>";
+}
+
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $routes = [

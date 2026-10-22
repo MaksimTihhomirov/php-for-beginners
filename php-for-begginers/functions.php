@@ -3,14 +3,14 @@
 
 function dd($value)
 {
-    echo "<pre>";
+    echo '<pre>';
     var_dump($value);
-    echo "</pre>";
+    echo '</pre>';
 
     die();
 }
 
 function urlIs($value)
 {
-    return $_SERVER['REQUEST_URI'] === $value;
+    return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) === $value;
 }

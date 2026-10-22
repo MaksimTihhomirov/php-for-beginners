@@ -5,11 +5,13 @@ class Database
 {
     public $connection;
 
-    public function __construct()
+    public function __construct($config, $username = 'root', $password = 'root')
     {
-        $dsn = "mysql:host=127.0.0.1;port=8889;dbname=myapp;charset=utf8mb4";
+        $dsn = 'mysql:' . http_build_query($config, '', ';');
 
-        $this->connection = new PDO($dsn, 'root', 'root');
+        $this->connection = new PDO($dsn, $username, $password, [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
     }
 
     public function query($query)

@@ -3,4 +3,6 @@
 
 $heading = 'Contact Us';
 
-require __DIR__ . '/views/contact.view.php';
+require 'functions.php';
+
+require 'views/contact.view.php';

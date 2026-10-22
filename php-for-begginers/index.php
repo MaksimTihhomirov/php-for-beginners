@@ -3,4 +3,6 @@
 
 $heading = 'Home';
 
-require __DIR__ . '/views/index.view.php';
+require 'functions.php';
+
+require 'views/index.view.php';

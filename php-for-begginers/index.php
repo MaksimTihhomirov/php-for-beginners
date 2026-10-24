@@ -11,6 +11,7 @@ $db = new Database($config['database']);
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $routes = [
+    '/notes/create' => 'controllers/note-create.php',
     '/' => 'controllers/index.php',
     '/about' => 'controllers/about.php',
     '/contact' => 'controllers/contact.php',

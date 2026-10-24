@@ -7,7 +7,7 @@
 
     <title><?= htmlspecialchars($heading) ?></title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 </head>
 
 <body class="min-h-screen bg-gray-100 text-gray-900">

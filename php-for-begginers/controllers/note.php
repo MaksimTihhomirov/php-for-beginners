@@ -4,12 +4,8 @@
 $heading = 'Note';
 
 $note = $db->query('SELECT * FROM notes WHERE id = :id', [
-    'id' => $_GET['id']
-])->fetch();
-
-if (!$note) {
-    abort(404);
-}
+    'id' => $_GET['id'] ?? null
+])->findOrFail();
 
 $currentUserId = 1;
 

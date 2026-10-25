@@ -5,15 +5,14 @@ require 'functions.php';
 
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
-
-    require __DIR__ . "/" . lcfirst($class) . ".php";
+    require __DIR__ . '/' . lcfirst($class) . '.php';
 });
 
 $config = require 'config.php';
-
 $db = new Core\Database($config['database']);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
 
 $routes = [
     '/' => 'controllers/index.php',
@@ -24,7 +23,9 @@ $routes = [
     '/notes/create' => 'controllers/notes/create.php'
 ];
 
-if (array_key_exists($uri, $routes)) {
+if ($uri === '/notes/delete' && $method === 'POST') {
+    require 'controllers/notes/destroy.php';
+} elseif (array_key_exists($uri, $routes)) {
     require $routes[$uri];
 } else {
     http_response_code(404);

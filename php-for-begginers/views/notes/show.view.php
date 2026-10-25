@@ -19,6 +19,12 @@
         <div class="mt-4 border rounded-lg p-5 bg-white">
             <p class="whitespace-pre-wrap">
                 <?= htmlspecialchars($note['body'], ENT_QUOTES, 'UTF-8') ?>
+                <div class="mt-4">
+    <a href="/notes/edit?id=<?= $note['id'] ?>"
+       class="bg-gray-500 text-white px-4 py-2 rounded">
+        Edit
+    </a>
+</div>
             </p>
         </div>
 

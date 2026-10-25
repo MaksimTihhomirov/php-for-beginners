@@ -32,4 +32,10 @@ require 'routes.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-$router->route($uri, $_SERVER['REQUEST_METHOD'], $db);
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method === 'POST' && isset($_POST['_method'])) {
+    $method = strtoupper($_POST['_method']);
+}
+
+$router->route($uri, $method, $db);

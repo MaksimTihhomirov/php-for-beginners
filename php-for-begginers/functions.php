@@ -23,3 +23,8 @@ function abort($code = 404)
 
     die();
 }
+
+function base_path($path)
+{
+    return __DIR__ . '/' . ltrim($path, '/');
+}

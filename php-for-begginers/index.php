@@ -4,11 +4,14 @@
 require 'functions.php';
 
 spl_autoload_register(function ($class) {
-    require __DIR__ . "/core/{$class}.php";
+    $class = str_replace('\\', '/', $class);
+
+    require __DIR__ . "/" . lcfirst($class) . ".php";
 });
 
 $config = require 'config.php';
-$db = new Database($config['database']);
+
+$db = new Core\Database($config['database']);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

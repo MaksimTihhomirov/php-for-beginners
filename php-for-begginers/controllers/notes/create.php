@@ -1,17 +1,15 @@
 
 <?php
 
-
+use Core\Validator;
 
 $heading = 'Create Note';
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $body = trim($_POST['body'] ?? '');
 
     if (!Validator::string($body, 1, 1000)) {
-
         if ($body === '') {
             $errors['body'] = 'A body is required';
         } else {
@@ -20,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-
         $db->query(
             'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)',
             [

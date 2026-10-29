@@ -1,6 +1,7 @@
 
 <?php
 
+use Core\Authenticator;
 use Core\Http\Forms\LoginForm;
 
 $email = trim($_POST['email'] ?? '');
@@ -16,25 +17,15 @@ if (!$form->validate($email, $password)) {
     return;
 }
 
-$user = $db->query(
-    "SELECT * FROM users WHERE email = :email",
-    ['email' => $email]
-)->find();
+$auth = new Authenticator();
 
-if (!$user || !password_verify($password, $user['password'] ?? '')) {
+if (!$auth->attempt($email, $password)) {
     $errors = ['login' => 'Invalid email or password.'];
     $heading = 'Login';
 
     require 'views/session/create.view.php';
     return;
 }
-
-session_regenerate_id(true);
-
-$_SESSION['user'] = [
-    'id' => $user['id'],
-    'email' => $user['email']
-];
 
 header('Location: /');
 exit;

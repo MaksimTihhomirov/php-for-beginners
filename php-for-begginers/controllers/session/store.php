@@ -3,6 +3,7 @@
 
 use Core\Authenticator;
 use Core\Http\Forms\LoginForm;
+use Core\Session;
 
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
@@ -10,21 +11,21 @@ $password = $_POST['password'] ?? '';
 $form = new LoginForm();
 
 if (!$form->validate($email, $password)) {
-    $errors = $form->errors();
-    $heading = 'Login';
+    Session::flash('errors', $form->errors());
 
-    require 'views/session/create.view.php';
-    return;
+    header('Location: /login');
+    exit;
 }
 
 $auth = new Authenticator();
 
 if (!$auth->attempt($email, $password)) {
-    $errors = ['login' => 'Invalid email or password.'];
-    $heading = 'Login';
+    Session::flash('errors', [
+        'login' => 'Invalid email or password.'
+    ]);
 
-    require 'views/session/create.view.php';
-    return;
+    header('Location: /login');
+    exit;
 }
 
 header('Location: /');

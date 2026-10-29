@@ -42,3 +42,4 @@ if ($method === 'POST' && isset($_POST['_method'])) {
 }
 
 $router->route($uri, $method, $db);
+\Core\Session::unflash();

@@ -16,7 +16,7 @@
                 type="email"
                 id="email"
                 name="email"
-                value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                 required
                 class="w-full border rounded px-3 py-2"
             >
@@ -33,6 +33,18 @@
                 class="w-full border rounded px-3 py-2"
             >
         </div>
+
+        <?php if (isset($errors['email'])): ?>
+            <p class="text-red-500 text-sm">
+                <?= htmlspecialchars($errors['email']) ?>
+            </p>
+        <?php endif; ?>
+
+        <?php if (isset($errors['password'])): ?>
+            <p class="text-red-500 text-sm">
+                <?= htmlspecialchars($errors['password']) ?>
+            </p>
+        <?php endif; ?>
 
         <?php if (isset($errors['login'])): ?>
             <p class="text-red-500 text-sm">

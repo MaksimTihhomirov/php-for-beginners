@@ -13,6 +13,10 @@ $form = new LoginForm();
 if (!$form->validate($email, $password)) {
     Session::flash('errors', $form->errors());
 
+    Session::flash('old', [
+        'email' => $email
+    ]);
+
     header('Location: /login');
     exit;
 }
@@ -22,6 +26,10 @@ $auth = new Authenticator();
 if (!$auth->attempt($email, $password)) {
     Session::flash('errors', [
         'login' => 'Invalid email or password.'
+    ]);
+
+    Session::flash('old', [
+        'email' => $email
     ]);
 
     header('Location: /login');

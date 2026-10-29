@@ -1,22 +1,30 @@
 
 <?php
 
+use Core\Http\Forms\LoginForm;
+
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
-$errors = [];
+$form = new LoginForm();
+
+if (!$form->validate($email, $password)) {
+    $errors = $form->errors();
+    $heading = 'Login';
+
+    require 'views/session/create.view.php';
+    return;
+}
 
 $user = $db->query(
-    'SELECT * FROM users WHERE email = :email',
+    "SELECT * FROM users WHERE email = :email",
     ['email' => $email]
 )->find();
 
 if (!$user || !password_verify($password, $user['password'] ?? '')) {
-    $errors['login'] = 'Invalid email or password.';
-}
-
-if ($errors) {
+    $errors = ['login' => 'Invalid email or password.'];
     $heading = 'Login';
+
     require 'views/session/create.view.php';
     return;
 }

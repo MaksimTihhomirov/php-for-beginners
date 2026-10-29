@@ -1,18 +1,20 @@
 {
-  "autoload": {
-    "psr-4": {
-      "Core\\": "core/"
+    "autoload": {
+        "psr-4": {
+            "Core\\": "php-for-beginners/core/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
-  },
-  "require": {
-    "illuminate/collections": "^13.39"
-  },
-  "require-dev": {
-    "pestphp/pest": "^5.3"
-  },
-  "config": {
-    "allow-plugins": {
-      "pestphp/pest-plugin": true
-    }
-  }
 }

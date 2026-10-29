@@ -9,6 +9,7 @@ return array(
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-common/src'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'Tests\\' => array($baseDir . '/tests'),
     'Termwind\\' => array($vendorDir . '/nunomaduro/termwind/src'),
     'Symfony\\Polyfill\\Php86\\' => array($vendorDir . '/symfony/polyfill-php86'),
     'Symfony\\Polyfill\\Php85\\' => array($vendorDir . '/symfony/polyfill-php85'),
@@ -41,5 +42,5 @@ return array(
     'Fidry\\CpuCoreCounter\\' => array($vendorDir . '/fidry/cpu-core-counter/src'),
     'Doctrine\\Deprecations\\' => array($vendorDir . '/doctrine/deprecations/src'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'Core\\' => array($baseDir . '/core'),
+    'Core\\' => array($baseDir . '/php-for-beginners/core'),
 );

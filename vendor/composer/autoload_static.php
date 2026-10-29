@@ -39,6 +39,7 @@ class ComposerStaticInit549b30cf562441767cad10941467eaab
         ),
         'T' =>
         array (
+            'Tests\\' => 6,
             'Termwind\\' => 9,
         ),
         'S' =>
@@ -113,6 +114,10 @@ class ComposerStaticInit549b30cf562441767cad10941467eaab
         'Webmozart\\Assert\\' =>
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Tests\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Termwind\\' =>
         array (
@@ -246,7 +251,7 @@ class ComposerStaticInit549b30cf562441767cad10941467eaab
         ),
         'Core\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/core',
+            0 => __DIR__ . '/../..' . '/php-for-beginners/core',
         ),
     );
 

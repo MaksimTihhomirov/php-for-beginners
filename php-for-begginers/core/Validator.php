@@ -1,4 +1,5 @@
 <?php
+
 namespace Core;
 
 class Validator
@@ -14,5 +15,10 @@ class Validator
     public static function email($value)
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
+    }
+
+    public static function greaterThan(int $value, int $greaterThan): bool
+    {
+        return $value > $greaterThan;
     }
 }

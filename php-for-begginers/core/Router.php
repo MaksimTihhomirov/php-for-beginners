@@ -8,22 +8,22 @@ class Router
 
     public function get($uri, $controller)
     {
-        $this->add('GET', $uri, $controller);
+        return $this->add('GET', $uri, $controller);
     }
 
     public function post($uri, $controller)
     {
-        $this->add('POST', $uri, $controller);
+        return $this->add('POST', $uri, $controller);
     }
 
     public function patch($uri, $controller)
     {
-        $this->add('PATCH', $uri, $controller);
+        return $this->add('PATCH', $uri, $controller);
     }
 
     public function delete($uri, $controller)
     {
-        $this->add('DELETE', $uri, $controller);
+        return $this->add('DELETE', $uri, $controller);
     }
 
     protected function add($method, $uri, $controller)
@@ -31,14 +31,29 @@ class Router
         $this->routes[] = [
             'method' => $method,
             'uri' => $uri,
-            'controller' => $controller
+            'controller' => $controller,
+            'middleware' => null
         ];
+
+        return $this;
+    }
+
+    public function only($key)
+    {
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+
+        return $this;
     }
 
     public function route($uri, $method, $db)
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
+
+                if ($route['middleware']) {
+                    Middleware::resolve($route['middleware']);
+                }
+
                 return require base_path($route['controller']);
             }
         }
@@ -47,4 +62,5 @@ class Router
         require base_path('views/404.php');
     }
 }
+
 

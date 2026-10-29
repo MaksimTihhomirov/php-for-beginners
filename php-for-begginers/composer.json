@@ -3,5 +3,13 @@
         "psr-4": {
             "Core\\": "core/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.5"
     }
 }

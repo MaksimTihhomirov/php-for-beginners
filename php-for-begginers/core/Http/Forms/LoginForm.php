@@ -25,4 +25,17 @@ class LoginForm
     {
         return $this->errors;
     }
+
+public function failed()
+{
+    return count($this->errors) > 0;
 }
+
+public function error($field, $message)
+{
+    $this->errors[$field] = $message;
+
+    return $this;
+}
+
+    }

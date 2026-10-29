@@ -24,9 +24,9 @@ if (!$form->validate($email, $password)) {
 $auth = new Authenticator();
 
 if (!$auth->attempt($email, $password)) {
-    Session::flash('errors', [
-        'login' => 'Invalid email or password.'
-    ]);
+    $form->error('login', 'Invalid email or password.');
+
+    Session::flash('errors', $form->errors());
 
     Session::flash('old', [
         'email' => $email

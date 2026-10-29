@@ -3,7 +3,6 @@
 
 session_start();
 
-
 use Core\App;
 use Core\Container;
 use Core\Database;
@@ -11,11 +10,7 @@ use Core\Router;
 
 require 'functions.php';
 
-spl_autoload_register(function ($class) {
-    $class = str_replace('\\', '/', $class);
-
-    require __DIR__ . "/{$class}.php";
-});
+require __DIR__ . '/vendor/autoload.php';
 
 $container = new Container();
 
@@ -42,4 +37,5 @@ if ($method === 'POST' && isset($_POST['_method'])) {
 }
 
 $router->route($uri, $method, $db);
+
 \Core\Session::unflash();
